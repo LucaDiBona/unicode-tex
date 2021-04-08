@@ -1,9 +1,19 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{unicode-tex}[2021/04/08 Unicode Handling Package]
 
+%Package imports
 \RequirePackage{fontspec}
+\RequirePackage{stringstrings}
 
+%Set up font to be used for unicode symbols
 \newfontfamily\unicodefont{Symbola}
 \DeclareTextFontCommand{\textuc}{\unicodefont}
 
-\newcommand{\unicode}[1]{\textuc{^^^^299c}}
+%Outputs a unicode symbol in the selected font
+\newcommand{\unicode}[1]{%
+%Ensures string is in appropriate form
+    {\Treatments{1}{2}{1}{1}{1}{0}%
+    \substring[q]{#1}{0}{$}%
+%Outputs unicode symbol in the selected font
+    \textuc{\symbol{\thestring}}
+    }}
