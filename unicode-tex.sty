@@ -1,0 +1,9 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{unicode-tex}[2021/04/08 Unicode Handling Package]
+
+\RequirePackage{fontspec}
+
+\newfontfamily\unicodefont{Symbola}
+\DeclareTextFontCommand{\textuc}{\unicodefont}
+
+\newcommand{\unicode}[1]{\textuc{^^^^299c}}
